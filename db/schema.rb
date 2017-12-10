@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(version: 20171210105021) do
     t.integer "user_id"
     t.float "lat", null: false
     t.float "lon", null: false
+    t.string "battery"
     t.datetime "time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

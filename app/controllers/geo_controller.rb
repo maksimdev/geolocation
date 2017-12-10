@@ -22,7 +22,10 @@ def create
       point = @user.geopoints.build
       point[:lat] = @geopoint[:lat]
       point[:lon] = @geopoint[:lon]
+      point[:battery] = @geopoint[:battery]
+      point[:time] = @geopoint[:time]
       if point.save
+        @user.update(lat: point[:lat], lon: point[:lon], time: point[:time])
         #geopoint saved successfuly
         render json: "ok", status: 200
       else

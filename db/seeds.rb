@@ -7,27 +7,35 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-i=1
-loop do
+#i=1
+#loop do
+#  user = User.new
+#  user[:login] = "Maksim#{i}"
+#  user[:imei] = "000#{i}"
+#  user[:lat] = rand(59.00001..60.99999)
+#  user[:lon] = rand(29.00001..30.99999)
+#  user[:time] = "2007-12-04 00:00:0#{i}"
+#  user.save
+#
+#    j=0
+#    loop do
+#      geopoint = user.geopoints.build
+#      geopoint[:lat] = rand(59.00001..60.99999)
+#      geopoint[:lon] = rand(29.00001..30.99999)
+#      geopoint[:time] = "2007-12-04 00:00:0#{j}"
+#      geopoint.save
+#      j+=1
+#      break if j == 3
+#    end
+#
+#  i+=1
+#  break if i == 4
+#end
+
   user = User.new
-  user[:login] = "Maksim#{i}"
-  user[:imei] = "000#{i}"
-  user[:lat] = rand(59.00001..60.99999)
-  user[:lon] = rand(29.00001..30.99999)
-  user[:time] = "2007-12-04 00:00:0#{i}"
+  user[:login] = "Maksim"
+  user[:imei] = "0000"
+  user[:lat] = 0
+  user[:lon] = 0
+  user[:time] = "2007-12-04 00:00:00"
   user.save
-
-    j=0
-    loop do
-      geopoint = user.geopoints.build
-      geopoint[:lat] = rand(59.00001..60.99999)
-      geopoint[:lon] = rand(29.00001..30.99999)
-      geopoint[:time] = "2007-12-04 00:00:0#{j}"
-      geopoint.save
-      j+=1
-      break if j == 3
-    end
-
-  i+=1
-  break if i == 4
-end

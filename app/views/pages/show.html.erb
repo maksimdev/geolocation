@@ -50,7 +50,7 @@
           var coord = {};
           coord['lat'] = props.lat;
           coord['lng'] = props.lon;
-          var content = "<p>"+(props.login || props.user_id)+" "+props.time+"</p>";
+          var content = "<p>"+(props.login || props.user_id)+" "+props.time+" "+props.battery+"</p>";
           var marker = new google.maps.Marker({
             content:content,
             position:coord,

@@ -4,6 +4,7 @@ class CreateGeopoints < ActiveRecord::Migration[5.1]
       t.belongs_to :user, foreign_key: true
       t.float :lat,       null: false
       t.float :lon,       null: false
+      t.string :battery
       t.datetime :time
 
       t.timestamps
