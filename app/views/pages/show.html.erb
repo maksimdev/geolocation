@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+       #map {
+        height: 600px;
+        width: 100%;
+       }
+    </style>
+  </head>
+  <body>
+    <h3>Maps.</h3>
+    <div id="map"></div>
+    <script>
+      //GetDataFromServer
+      function getData() {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', "/geo/show/<%= @id %>", false);
+        xhr.send();
+        if (xhr.status != 200) {
+          //error
+          alert( xhr.status + ': ' + xhr.statusText );
+        } else {
+          console.log( xhr.responseText );
+        }
+        return xhr.responseText;
+      }
+
+      //InitMap
+      function initMap() {
+
+        //Map options
+        var options = {
+          zoom:10,
+          center:{lat:59.8944444, lng:30.2641665}
+        };
+
+        //New map
+        var map = new google.maps.Map(document.getElementById('map'), options);
+
+        //Get users
+        var geopoints = JSON.parse(getData());
+
+        for(var i=0; i<geopoints.length; i++){
+          addMarker(geopoints[i]);
+        }
+
+        //Add Marker function
+        function addMarker(props){
+          var coord = {};
+          coord['lat'] = props.lat;
+          coord['lng'] = props.lon;
+          var content = "<p>"+(props.login || props.user_id)+" "+props.time+"</p>";
+          var marker = new google.maps.Marker({
+            content:content,
+            position:coord,
+            map:map
+          });
+
+          //Check content
+          if (props.login || props.user_id) {
+            var infoWindow = new google.maps.InfoWindow({
+              content: content
+            });
+
+            marker.addListener('click', function(){
+              infoWindow.open(map, marker);
+              });
+          }
+        }
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB304Js2El258a1H08slPlhbsql7QAZOwQ&callback=initMap">
+    </script>
+  </body>
+</html>

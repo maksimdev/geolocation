@@ -15,7 +15,8 @@ def show
      render json: "empty_error", status: 423
   end
 end
-#Create new geopoint for user
+#Create new geopoint for user.
+#User already exists!!! AND UNIQ!
 def create
   if geo_params
       point = @user.geopoints.build
@@ -43,7 +44,7 @@ private
   end
   #Find user by id
   def user_id_params
-    @user_id = User.find_by(id: params[:user_id])
+    @user_id = User.find_by(id: params[:id])
     @user_id
   end
 end
